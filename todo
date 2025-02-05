@@ -1,0 +1,6 @@
+- test the initialisation part of the programm
+
+- find a solution to not have deadlock
+- find a solution to not have a random scenario where a philosopher
+died form starvation
+- establish the routine in function of those solutions

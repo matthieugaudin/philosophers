@@ -1,8 +1,8 @@
 NAME = philo
-CC = cc
-CCFLAGS = -Wall -Wexta
+CC = cc -g
+CCFLAGS = -Wall -Wextra -Werror
 
-SRC = philo/src/main.c
+SRC = src/main.c src/parser.c src/launch_philo.c src/init_data.c
 
 OBJ = $(SRC:.c=.o)
 
