@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:48:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/05 20:29:42 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/06 17:13:03 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+# define pthread_mutex_t pthread_mtx
 # include <stdio.h>
 # include <stdbool.h>
 # include <unistd.h>
@@ -23,24 +24,27 @@
 typedef struct s_philo
 {
     long			id;
-	long			nb_philo;
     long    		meals_eaten;
     long    		elapsed_time;
 	pthread_t		th;
-    pthread_mutex_t	*r_fork;
-    pthread_mutex_t	*l_fork;
+    pthread_mtx		*r_fork;
+    pthread_mtx		*l_fork;
+    struct s_env	*env;
 }   t_philo;
 
 typedef struct s_env
 {
-    long			die_time;
-	long			eat_time;
-    long			sleep_time;
-	long			meals_to_eat;
-	pthread_mutex_t	*forks;
-	t_philo			*philo;
+    long		nb_philo;
+    long		die_time;
+	long		eat_time;
+    long		sleep_time;
+	long		nb_meals;
+	pthread_mtx	*forks;
+	t_philo		*philos;
 }   t_env;
 
-void    parser(int argc, char **argv);
+bool    parser(int argc, char **argv);
+void	init_data(t_env **env, char **argv, int argc);
+void	launch_philo(t_philo *philos);
 
 #endif /* PHILO_H */
