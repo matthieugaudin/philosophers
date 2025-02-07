@@ -6,7 +6,7 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:38:43 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/06 17:21:42 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/07 16:40:18 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@ static long	ft_atol(const char *nptr)
 	return (res * sign);
 }
 
+static long	get_start_time(t_env *env)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	env->start_time = (time.tv_sec * 1000 + time.tv_usec / 1000 );
+}
+
 static void	init_env(t_env **env, char **argv, int argc)
 {
 	int	i;
@@ -50,6 +58,7 @@ static void	init_env(t_env **env, char **argv, int argc)
 		(*env)->nb_meals = ft_atol(argv[5]);
 	else
 		(*env)->nb_meals = -1;
+	(*env)->start_time = get_start_time(*env);
 	(*env)->forks = malloc(sizeof(pthread_mtx) * (*env)->nb_philo); // protect
 	i = 0;
 	while (i < (*env)->nb_philo)

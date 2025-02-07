@@ -6,7 +6,7 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:48:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/06 17:13:03 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/07 16:27:28 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/types.h>
+# include <sys/time.h>
 
 typedef struct s_philo
 {
@@ -39,6 +40,7 @@ typedef struct s_env
 	long		eat_time;
     long		sleep_time;
 	long		nb_meals;
+    int         start_time; // to init
 	pthread_mtx	*forks;
 	t_philo		*philos;
 }   t_env;
