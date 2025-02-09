@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:48:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/07 16:27:28 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/09 20:29:44 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ typedef struct s_philo
 {
     long			id;
     long    		meals_eaten;
-    long    		elapsed_time;
+    long    		last_meal_time;
+    bool            is_over;
 	pthread_t		th;
     pthread_mtx		*r_fork;
     pthread_mtx		*l_fork;
@@ -40,7 +41,10 @@ typedef struct s_env
 	long		eat_time;
     long		sleep_time;
 	long		nb_meals;
-    int         start_time; // to init
+    long        start_time;
+    long        death_flag;
+    pthread_t   monitor;
+    pthread_mtx print_mutex;
 	pthread_mtx	*forks;
 	t_philo		*philos;
 }   t_env;
@@ -48,5 +52,9 @@ typedef struct s_env
 bool    parser(int argc, char **argv);
 void	init_data(t_env **env, char **argv, int argc);
 void	launch_philo(t_philo *philos);
+long	get_start_time(void);
+long	get_current_time(t_philo *philo);
+long	get_eleapsed_time(t_philo *philo);
+void	*routine(void *arg);
 
 #endif /* PHILO_H */

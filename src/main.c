@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:03:06 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/06 17:16:31 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/09 20:32:41 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int main(int argc, char **argv)
     if (parser(argc, argv))
         return (1);
     init_data(&env, argv, argc);
-	// lunch_philo(env->philos);
+	launch_philo(env->philos);
+    // free_data();
     return (0);
 }

@@ -3,101 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   launch_philo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:06:12 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/07 17:08:18 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/09 20:28:03 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-/*
-- verify that no philo died (maybe not here)
-- verify that all philos have eaten
-*/
-static bool	is_over(t_philo *philo)
+static void	exit_philo(t_philo *philo, int philo_id)
 {
-	int     i;
-
-	t_env   *env;
+	int	i;
 
 	i = 0;
-    env = philo->env;
-	while (i < env->nb_philo)
+	while (i < philo->env->nb_philo)
 	{
-		if (philo[i].elapsed_time >= env->die_time)
-			return (true);
+		philo[i].is_over = true;
 		i++;
 	}
-	i = 0;
-	if (env->nb_meals != -1)
+	if (philo_id != -1)
+		philo->env->death_flag = philo_id;
+}
+
+static void	*monitor(void *arg)
+{
+	t_philo *philo;
+	int		i;
+	
+	philo = (t_philo *)arg;
+	while (!philo->env->death_flag)
 	{
-		while (i < env->nb_philo)
+		i = 0;
+		while (i < philo->env->nb_philo)
 		{
-			if (philo[i].meals_eaten != env->nb_meals)
+			if (philo[i].meals_eaten != philo->env->nb_meals)
 				break ;
 			i++;
 		}
-	}
-	if (i == env->nb_philo - 1)
-		return (true);
-	return (false);
-}
-
-static void	is_thinking(t_philo *philo)
-{
-	printf("%d %d is thinking\n", 1, philo->id);
-}
-
-static void	is_sleeping(t_philo *philo)
-{
-	printf("%d %d is sleeping\n", 1, philo->id);
-	usleep(philo->env->sleep_time * 1000);
-	philo->elapsed_time += philo->env->sleep_time;
-}
-
-static void	is_eating(t_philo *philo)
-{
-	if (philo->id % 2)
-		pthread_mutex_lock(&philo->l_fork);
-	else
-		pthread_mutex_lock(&philo->r_fork);
-	printf("%d %d has taken a fork\n", 1, philo->id);
-	if (philo->id % 2)
-		pthread_mutex_lock(&philo->r_fork);
-	else
-		pthread_mutex_lock(&philo->l_fork);
-	printf("%d %d has taken a fork\n", 1, philo->id);
-	printf("%d %d is eating\n", 1, philo->id);
-	usleep(philo->env->eat_time * 1000);
-	philo->elapsed_time += philo->env->eat_time;
-	if (philo->id % 2)
-	{
-		pthread_mutex_unlock(&philo->l_fork);
-		pthread_mutex_unlock(&philo->r_fork);
-	}
-	else
-	{
-		pthread_mutex_unlock(&philo->r_fork);
-		pthread_mutex_unlock(&philo->l_fork);
-	}
-}
-static void	*routine(void *arg)
-{
-	t_philo *philo;
-	
-
-	philo = (t_philo *)arg;
-	while (!is_over(philo))
-	{
-		is_eating(philo);
-		is_sleeping(philo);
-		is_thinking(philo);
+		if (i == philo->env->nb_philo - 1)
+			exit_philo(philo, -1);
+		i = 0;
+		while (i < philo->env->nb_philo && !philo->env->death_flag)
+		{
+			if (philo->env->die_time < philo[i].last_meal_time - philo->env->start_time)
+				exit_philo(philo, philo[i].id);
+			i++;
+		}
 	}
 	return (NULL);
 }
-
 
 void	launch_philo(t_philo *philos)
 {
@@ -109,10 +64,14 @@ void	launch_philo(t_philo *philos)
 		pthread_create(&philos[i].th, NULL, &routine, &philos[i]);
 		i++;
 	}
+	pthread_create(&philos->env->monitor, NULL, &monitor, philos);
 	i = 0;
 	while (i < philos->env->nb_philo)
 	{
 		pthread_join(philos[i].th, NULL);
 		i++;
 	}
+	pthread_join(philos->env->monitor, NULL);
+	if (philos->env->death_flag != -1)
+		printf("%ld %ld died", get_eleapsed_time(philos), philos->env->death_flag);
 }

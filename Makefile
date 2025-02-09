@@ -2,7 +2,8 @@ NAME = philo
 CC = cc -g
 CCFLAGS = -Wall -Wextra -Werror
 
-SRC = src/main.c src/parser.c src/launch_philo.c src/init_data.c
+SRC =	src/main.c src/parser.c src/launch_philo.c src/init_data.c src/time.c \
+		src/routine.c	
 
 OBJ = $(SRC:.c=.o)
 

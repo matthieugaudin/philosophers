@@ -1,8 +1,24 @@
 
-- find a solution to not have a random scenario where a philosopher
-died form starvation
-- establish the routine in function of those solutions
-- parsing :
-    -> 1 philo
-    -> when 0 in some value
-    ->protect every function
+
+
+
+
+
+
+
+
+
+
+
+
+
+- mutex the printf : OK
+- verify if a the simulation is ended every time in the routine : OK
+- simple test (with race conditions (--tool=helgrind) + malloc allocations)
+    -> only odd ids are printing messages
+    -> code doesn't stop when they have all eaten
+- settle the case where there is only one philosopher
+- if the number passed is 0 return error message
+- test the code with testers
+- protect every function call and malloc
+- code to norme
