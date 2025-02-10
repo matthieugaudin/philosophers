@@ -6,19 +6,27 @@
 
 
 
-
-
-
-
-
-
 - mutex the printf : OK
 - verify if a the simulation is ended every time in the routine : OK
 - simple test (with race conditions (--tool=helgrind) + malloc allocations)
-    -> only odd ids are printing messages
-    -> code doesn't stop when they have all eaten
+    -> timestamp do not work : OK
+    -> not all threads are printing messages : OK
+    -> ./philo 4 410 200 200 4 do not always stop
+    -> ./philo 4 0 200 200 4 never stop
+    -> mutex all shared varibales
+    -> monitoring working with death
+    -> monitoring working wiht nb_meals
+    -> test with odd numbers with a sleep
+    -> put i to long
+    -> use atoll
 - settle the case where there is only one philosopher
 - if the number passed is 0 return error message
 - test the code with testers
-- protect every function call and malloc
+- protect every function : malloc + init + create
 - code to norme
+
+
+
+
+
+

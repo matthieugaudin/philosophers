@@ -6,7 +6,7 @@
         "type": "cppdbg",               // Debugger type (C++ Debugger)
         "request": "launch",            // Launch a new debugging session
         "program": "${workspaceFolder}/philo", // Path to your compiled program
-        "args": ["5", "100", "11", "7"],                     // Arguments to pass to your program (optional)
+        "args": ["4", "410", "200", "200", "4"],                     // Arguments to pass to your program (optional)
         "stopAtEntry": false,           // Whether to pause at the program's entry point
         "cwd": "${workspaceFolder}",    // Current working directory
         "environment": [],              // Environment variables (optional)

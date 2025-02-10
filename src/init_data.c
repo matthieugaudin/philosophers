@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:38:43 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/09 20:29:50 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/10 15:48:09 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static void	init_env(t_env **env, char **argv, int argc)
 		i++;
 	}
 	pthread_mutex_init(&(*env)->print_mutex, NULL);
+	pthread_mutex_init(&(*env)->over_mutex, NULL);
 }
 
 static void	init_philos(t_env *env)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:48:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/09 20:29:44 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/10 15:55:02 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 
 typedef struct s_philo
 {
+    long long  		last_meal_time; // can change
     long			id;
-    long    		meals_eaten;
-    long    		last_meal_time;
+    long    		meals_eaten; // can change
     bool            is_over;
 	pthread_t		th;
     pthread_mtx		*r_fork;
@@ -36,25 +36,25 @@ typedef struct s_philo
 
 typedef struct s_env
 {
-    long		nb_philo;
-    long		die_time;
-	long		eat_time;
-    long		sleep_time;
-	long		nb_meals;
-    long        start_time;
-    long        death_flag;
-    pthread_t   monitor;
-    pthread_mtx print_mutex;
-	pthread_mtx	*forks;
-	t_philo		*philos;
+    long		    nb_philo;
+    long long		die_time;
+	long long		eat_time;
+    long long		sleep_time;
+	long		    nb_meals;
+    long long       start_time;
+    long            death_flag; // can change
+    pthread_t       monitor;
+    pthread_mtx     over_mutex;
+    pthread_mtx     print_mutex;
+	pthread_mtx	    *forks;
+	t_philo		    *philos;
 }   t_env;
 
 bool    parser(int argc, char **argv);
 void	init_data(t_env **env, char **argv, int argc);
 void	launch_philo(t_philo *philos);
-long	get_start_time(void);
-long	get_current_time(t_philo *philo);
-long	get_eleapsed_time(t_philo *philo);
+long long	get_start_time(void);
+long long	get_eleapsed_time(t_philo *philo);
 void	*routine(void *arg);
 
 #endif /* PHILO_H */
