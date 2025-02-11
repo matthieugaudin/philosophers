@@ -3,30 +3,8 @@
 
 
 
-
-
-
-- mutex the printf : OK
-- verify if a the simulation is ended every time in the routine : OK
-- simple test (with race conditions (--tool=helgrind) + malloc allocations)
-    -> timestamp do not work : OK
-    -> not all threads are printing messages : OK
-    -> ./philo 4 410 200 200 4 do not always stop
-    -> ./philo 4 0 200 200 4 never stop
-    -> mutex all shared varibales
-    -> monitoring working with death
-    -> monitoring working wiht nb_meals
-    -> test with odd numbers with a sleep
-    -> put i to long
-    -> use atoll
-- settle the case where there is only one philosopher
-- if the number passed is 0 return error message
-- test the code with testers
-- protect every function : malloc + init + create
-- code to norme
-
-
-
-
-
-
+- try to delete the first
+- bug : threads do their actions for a long time
+- monitor for death
+- monitor for sasiety
+- make all tests odd and even
