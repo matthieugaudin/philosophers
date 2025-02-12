@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:51:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/11 18:18:36 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/12 10:07:19 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void	is_thinking(t_philo *philo)
 {
 	print_state(philo, THINK);
 	if (philo->env->nb_philo % 2)
-		usleep((philo->env->eat_time * 2 - philo->env->sleep_time));
+		usleep((philo->env->eat_time * 2 - philo->env->sleep_time) * 1000);
 }
 
 void	*routine(void *arg)
@@ -82,8 +82,6 @@ void	*routine(void *arg)
 	t_philo *philo;
 
 	philo = (t_philo *)arg;
-	if (philo->env->nb_philo % 2)
-		usleep((philo->env->eat_time * 2 - philo->env->sleep_time));
 	while (true)
 	{
 		if (is_finish(philo->env))
