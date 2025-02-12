@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:48:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/11 16:11:15 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/12 10:48:02 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,7 @@ void	    launch_philo(t_philo *philos);
 void	    *routine(void *arg);
 long long	start_time(void);
 long long	current_time(t_philo *philo);
+bool	    is_finish(t_env *env);
+void	    monitor(t_philo *philo);
 
 #endif /* PHILO_H */

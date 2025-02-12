@@ -2,9 +2,10 @@
 
 
 
-
-- try to delete the first
-- bug : threads do their actions for a long time
+- make the system fair for odd number of philos : OK
+- try to delete the first usleep for odd philos : OK
+- threads do their actions for a long time together : OK
 - monitor for death
+    -> how to manage the situation if he's eating
 - monitor for sasiety
 - make all tests odd and even
