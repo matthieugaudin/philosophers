@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 17:28:31 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/11 16:10:32 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/14 13:39:51 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-long long	start_time(void)
+long long	current_time(void)
 {
 	struct timeval	time;
 	long long		res;
@@ -22,7 +22,7 @@ long long	start_time(void)
 	return (res);
 }
 
-long long	current_time(t_philo *philo)
+long long	elapsed_time(t_philo *philo)
 {
 	struct timeval	time;
 	long long		actual_time;

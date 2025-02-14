@@ -1,11 +1,11 @@
 
 
+- bug :
+    When it's even, more philo there is more likely a philo will die at die_time + eat_time 
+    It occurs when a philo think 3 times think_times, and this occures when they do not
+    work in pairs one begins after 2 eat_time cycle
+    When it's odd it's always the case
 
 
-- make the system fair for odd number of philos : OK
-- try to delete the first usleep for odd philos : OK
-- threads do their actions for a long time together : OK
-- monitor for death
-    -> how to manage the situation if he's eating
-- monitor for sasiety
-- make all tests odd and even
+- change the formula to wait odd ?
+- wait all philos ?

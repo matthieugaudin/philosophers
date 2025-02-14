@@ -6,25 +6,25 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:51:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/13 16:12:51 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/14 14:42:04 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-static void	print_state(t_philo *philo, int state)
+void	print_state(t_philo *philo, int state)
 {
 	pthread_mutex_lock(&philo->env->print_mtx);
 	if (state == EAT && !get_is_finish(philo->env))
-		printf("%lld %ld is eating\n", current_time(philo), philo->id);
+		printf("%lld %ld is eating\n", elapsed_time(philo), philo->id);
 	else if (state == SLEEP && !get_is_finish(philo->env))
-		printf("%lld %ld is sleeping\n", current_time(philo), philo->id);
+		printf("%lld %ld is sleeping\n", elapsed_time(philo), philo->id);
 	else if (state == THINK && !get_is_finish(philo->env))
-		printf("%lld %ld is thinking\n", current_time(philo), philo->id);
+		printf("%lld %ld is thinking\n", elapsed_time(philo), philo->id);
 	else if (state == FORK && !get_is_finish(philo->env))
-		printf("%lld %ld has taken a fork\n", current_time(philo), philo->id);
+		printf("%lld %ld has taken a fork\n", elapsed_time(philo), philo->id);
 	else if (state == DIE && !get_is_finish(philo->env))
-		printf("%lld %ld died\n", current_time(philo), philo->id);
+		printf("%lld %ld died\n", elapsed_time(philo), philo->id);
 	pthread_mutex_unlock(&philo->env->print_mtx);
 }
 
@@ -65,7 +65,7 @@ static void	is_sleeping(t_philo *philo)
 static void	is_thinking(t_philo *philo)
 {
 	print_state(philo, THINK);
-	if (philo->env->nb_philo % 2)
+	if (philo->env->nb_philo % 2 && philo->env->sleep_time > philo->env->eat_time)
 		usleep((philo->env->eat_time * 2 - philo->env->sleep_time) * 1000);
 }
 

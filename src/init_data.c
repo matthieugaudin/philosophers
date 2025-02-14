@@ -6,7 +6,7 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:38:43 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/13 16:07:10 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/14 13:39:33 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	init_env(t_env **env, char **argv, int argc)
 	(*env)->die_time = ft_atol(argv[2]);
 	(*env)->eat_time = ft_atol(argv[3]);
 	(*env)->sleep_time = ft_atol(argv[4]);
-	(*env)->start_time = start_time();
+	(*env)->start_time = current_time();
 	if (argc == 6)
 		(*env)->nb_meals = ft_atol(argv[5]);
 	else
@@ -89,4 +89,10 @@ void	init_data(t_env **env, char **argv, int argc)
 {
 	init_env(env, argv, argc);
 	init_philos(*env);
+	// printf("nb_philos : %ld\n", (*env)->nb_philo);
+	// printf("die_time : %lld\n", (*env)->die_time);
+	// printf("eat_time : %lld\n", (*env)->eat_time);
+	// printf("sleep_time : %lld\n", (*env)->sleep_time);
+	// printf("start_time : %lld\n", (*env)->start_time);
+	// printf("nb_meals : %ld\n", (*env)->nb_meals);
 }

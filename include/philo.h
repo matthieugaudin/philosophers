@@ -6,7 +6,7 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:48:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/13 16:12:24 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/14 13:39:09 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ bool        parser(int argc, char **argv);
 void	    init_data(t_env **env, char **argv, int argc);
 void	    launch_philo(t_philo *philos);
 void	    *routine(void *arg);
-long long	start_time(void);
-long long	current_time(t_philo *philo);
+long long	current_time(void);
+long long	elapsed_time(t_philo *philo);
 void	    monitor(t_philo *philo);
 void	    set_meals_eaten(t_philo *philo);
 void	    set_last_meal(t_philo *philo);
@@ -71,5 +71,6 @@ void        set_is_over(t_env *env, bool is_over);
 bool	    get_is_finish(t_env *env);
 long long   get_last_meal(t_philo *philo);
 long	    get_meals_eaten(t_philo *philo);
+void	    print_state(t_philo *philo, int state);
 
 #endif /* PHILO_H */
