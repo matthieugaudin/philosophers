@@ -1,11 +1,15 @@
 
+- monitor working with nb_meals
 
-- bug : make him dead not after time_to_eat
-    -> because meals_etaen == 0 and is_philo_dead never return true
-
-- change the formula to wait odd ?
+- change the formula to wait odd ? if inferior ?
 - parsing
+    -> error message on stderror
     -> overflow the int
     -> to much philos as an input to avoid segfault
     -> 0 as an input
     -> 1 philo input
+- free data
+- verify every malloc + pthread_create + pthread_mutex_init
+- verify a function call or malloc fail
+- put the code to the norme
+- yt tests

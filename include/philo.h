@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:48:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/14 13:39:09 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/14 18:33:20 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_env
     long			nb_philo;
 	long			nb_meals;
     bool      	  	is_over;
+    pthread_t       meals_th;
     pthread_mutex_t is_over_mtx;
     pthread_mutex_t last_meal_mtx;
     pthread_mutex_t meals_eaten_mtx;
@@ -72,5 +73,6 @@ bool	    get_is_finish(t_env *env);
 long long   get_last_meal(t_philo *philo);
 long	    get_meals_eaten(t_philo *philo);
 void	    print_state(t_philo *philo, int state);
+void        *check_meals(void *arg);
 
 #endif /* PHILO_H */
