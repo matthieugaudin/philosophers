@@ -6,7 +6,7 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:48:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/12 10:48:02 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/13 16:12:24 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct s_env
 	long			nb_meals;
     bool      	  	is_over;
     pthread_mutex_t is_over_mtx;
+    pthread_mutex_t last_meal_mtx;
+    pthread_mutex_t meals_eaten_mtx;
     pthread_mutex_t print_mtx;
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
@@ -62,7 +64,12 @@ void	    launch_philo(t_philo *philos);
 void	    *routine(void *arg);
 long long	start_time(void);
 long long	current_time(t_philo *philo);
-bool	    is_finish(t_env *env);
 void	    monitor(t_philo *philo);
+void	    set_meals_eaten(t_philo *philo);
+void	    set_last_meal(t_philo *philo);
+void        set_is_over(t_env *env, bool is_over);
+bool	    get_is_finish(t_env *env);
+long long   get_last_meal(t_philo *philo);
+long	    get_meals_eaten(t_philo *philo);
 
 #endif /* PHILO_H */

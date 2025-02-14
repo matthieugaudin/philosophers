@@ -6,7 +6,7 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:29:20 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/12 10:49:50 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/14 09:21:53 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	monitor(t_philo *philo)
 	// 		i++;
 	// 	}		
 	// }
-	usleep(3010000);
-	pthread_mutex_lock(&philo->env->is_over_mtx);
-	philo->env->is_over = true;
-	pthread_mutex_unlock(&philo->env->is_over_mtx);
+	usleep(350000);
+	set_is_over(philo->env, true);
 }

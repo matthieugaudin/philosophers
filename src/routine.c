@@ -6,7 +6,7 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:51:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/12 10:33:26 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/13 16:12:51 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 static void	print_state(t_philo *philo, int state)
 {
 	pthread_mutex_lock(&philo->env->print_mtx);
-	if (state == EAT && !is_finish(philo->env))
+	if (state == EAT && !get_is_finish(philo->env))
 		printf("%lld %ld is eating\n", current_time(philo), philo->id);
-	else if (state == SLEEP && !is_finish(philo->env))
+	else if (state == SLEEP && !get_is_finish(philo->env))
 		printf("%lld %ld is sleeping\n", current_time(philo), philo->id);
-	else if (state == THINK && !is_finish(philo->env))
+	else if (state == THINK && !get_is_finish(philo->env))
 		printf("%lld %ld is thinking\n", current_time(philo), philo->id);
-	else if (state == FORK && !is_finish(philo->env))
+	else if (state == FORK && !get_is_finish(philo->env))
 		printf("%lld %ld has taken a fork\n", current_time(philo), philo->id);
-	else if (state == DIE && !is_finish(philo->env))
+	else if (state == DIE && !get_is_finish(philo->env))
 		printf("%lld %ld died\n", current_time(philo), philo->id);
 	pthread_mutex_unlock(&philo->env->print_mtx);
 }
@@ -42,6 +42,8 @@ static void	is_eating(t_philo *philo)
 	print_state(philo, FORK);
 	print_state(philo, EAT);
 	usleep(philo->env->eat_time * 1000);
+	set_last_meal(philo);
+	set_meals_eaten(philo);
 	if (philo->id % 2)
 	{
 		pthread_mutex_unlock(philo->l_fork);
@@ -74,13 +76,13 @@ void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	while (true)
 	{
-		if (is_finish(philo->env))
+		if (get_is_finish(philo->env))
 			break ;
 		is_eating(philo);
-		if (is_finish(philo->env))
+		if (get_is_finish(philo->env))
 			break ;
 		is_sleeping(philo);
-		if (is_finish(philo->env))
+		if (get_is_finish(philo->env))
 			break ;
 		is_thinking(philo);
 	}

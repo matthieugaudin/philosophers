@@ -6,7 +6,7 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:38:43 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/12 09:49:04 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/13 16:07:10 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static void	init_env(t_env **env, char **argv, int argc)
 	}
 	pthread_mutex_init(&(*env)->print_mtx, NULL);
 	pthread_mutex_init(&(*env)->is_over_mtx, NULL);
+	pthread_mutex_init(&(*env)->last_meal_mtx, NULL);
+	pthread_mutex_init(&(*env)->meals_eaten_mtx, NULL);
 }
 
 static void	init_philos(t_env *env)
