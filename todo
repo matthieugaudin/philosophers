@@ -1,11 +1,11 @@
 
 
-- bug :
-    When it's even, more philo there is more likely a philo will die at die_time + eat_time 
-    It occurs when a philo think 3 times think_times, and this occures when they do not
-    work in pairs one begins after 2 eat_time cycle
-    When it's odd it's always the case
+- bug : make him dead not after time_to_eat
 
 
 - change the formula to wait odd ?
-- wait all philos ?
+- parsing
+    -> overflow the int
+    -> to much philos as an input to avoid segfault
+    -> 0 as an input
+    -> 1 philo input
