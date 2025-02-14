@@ -1,7 +1,7 @@
 
 
 - bug : make him dead not after time_to_eat
-
+    -> because meals_etaen == 0 and is_philo_dead never return true
 
 - change the formula to wait odd ?
 - parsing

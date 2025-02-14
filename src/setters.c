@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:41:37 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/14 13:41:01 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/14 18:00:35 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void    set_is_over(t_env *env, bool is_over)
 void	set_last_meal(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->env->last_meal_mtx);
-	philo->last_meal = current_time();
+	philo->last_meal = elapsed_time(philo);
 	pthread_mutex_unlock(&philo->env->last_meal_mtx);
 }
 

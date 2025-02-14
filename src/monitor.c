@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:29:20 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/14 15:35:58 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/14 18:01:43 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ static bool	is_philo_dead(t_philo *philo)
 {
 	long long	last_meal;
 	long long	die_time;
-	long long	current;
+	long long	elapsed;
 
 	last_meal = get_last_meal(philo);
-	current = current_time();
+	elapsed = elapsed_time(philo);
 	die_time = philo->env->die_time;
-	if (current - last_meal > die_time && last_meal != 0)
+	if (elapsed - last_meal > die_time)
 		return (true);
 	else
 		return (false);
