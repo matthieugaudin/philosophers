@@ -6,7 +6,7 @@
 /*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:51:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/14 19:10:33 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:33:25 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,13 @@ static void	is_thinking(t_philo *philo)
 		usleep((philo->env->eat_time * 2 - philo->env->sleep_time) * 1000);
 }
 
+static void	handle_one(t_philo *philo)
+{
+	pthread_mutex_lock(philo->r_fork);
+	print_state(philo, FORK);
+	pthread_mutex_unlock(philo->r_fork);
+}
+
 void	*routine(void *arg)
 {
 	t_philo *philo;
@@ -76,6 +83,11 @@ void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
 		usleep(5000);
+	if (philo->env->nb_philo == 1)
+	{
+		handle_one(philo);
+		return (NULL);
+	}
 	while (true)
 	{
 		if (get_is_finish(philo->env))

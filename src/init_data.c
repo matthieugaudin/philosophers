@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:38:43 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/14 13:39:33 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:29:17 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,10 @@ static void	init_philos(t_env *env)
 		philo[i].meals_eaten = 0;
 		philo[i].last_meal = 0;
 		philo[i].r_fork = &env->forks[i];
-		philo[i].l_fork = &env->forks[philo[i].id % env->nb_philo];
+		if (env->nb_philo == 1)
+			philo[i].l_fork = NULL;
+		else
+			philo[i].l_fork = &env->forks[philo[i].id % env->nb_philo];
 		philo[i].env = env;
 		i++;
 	}
