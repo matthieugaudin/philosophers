@@ -3,7 +3,8 @@ CC = cc -g
 CCFLAGS = -Wall -Wextra -Werror
 
 SRC =	src/main.c src/parser.c src/launch_philo.c src/init_data.c src/time.c \
-		src/routine.c src/getters.c src/setters.c src/monitor.c src/check_meals.c
+		src/routine.c src/getters.c src/setters.c src/monitor.c src/check_meals.c \
+		src/free_data.c
 
 OBJ = $(SRC:.c=.o)
 

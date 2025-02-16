@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/03 09:03:06 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/16 19:43:33 by mgaudin          ###   ########.fr       */
+/*   Created: 2025/02/16 19:38:30 by mgaudin           #+#    #+#             */
+/*   Updated: 2025/02/16 19:45:41 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int main(int argc, char **argv)
+void	free_data(t_env *env)
 {
-    t_env   *env;
+	int	i;
 
-    if (parser(argc, argv))
-        return (1);
-    init_data(&env, argv, argc);
-	launch_philo(env->philos);
-    free_data(env);
-    return (0);
+	i = 0;
+	while (i < env->nb_philo)
+	{
+		pthread_mutex_destroy(&env->forks[i]);
+		i++;
+	}
+	free(env->forks);
+	free(env->philos);
+	free(env);
 }

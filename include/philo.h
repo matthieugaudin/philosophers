@@ -6,7 +6,7 @@
 /*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:48:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/14 18:33:20 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:42:16 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ long long   get_last_meal(t_philo *philo);
 long	    get_meals_eaten(t_philo *philo);
 void	    print_state(t_philo *philo, int state);
 void        *check_meals(void *arg);
+void	    free_data(t_env *env);
 
 #endif /* PHILO_H */
