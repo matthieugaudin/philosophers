@@ -6,7 +6,7 @@
 /*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:51:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/16 19:33:25 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/16 20:12:03 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,12 @@ static void	is_sleeping(t_philo *philo)
 
 static void	is_thinking(t_philo *philo)
 {
+	long long	think_time;
+
+	think_time = philo->env->eat_time * 2 - philo->env->sleep_time;
 	print_state(philo, THINK);
-	if (philo->env->nb_philo % 2)
-		usleep((philo->env->eat_time * 2 - philo->env->sleep_time) * 1000);
+	if (philo->env->nb_philo % 2 && think_time > 0)
+		usleep(think_time * 0.8 * 1000);
 }
 
 static void	handle_one(t_philo *philo)
