@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:38:43 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/16 19:29:17 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/17 12:35:34 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-static long	ft_atol(const char *nptr)
+long	ft_atol(const char *nptr)
 {
 	size_t	i;
 	long	res;
