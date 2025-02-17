@@ -6,7 +6,7 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:43:46 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/17 15:16:24 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/17 15:21:36 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ static bool	check_overflow(int argc, char **argv)
 	long	res;
 
 	i = 1;
-	res = 0;
 	while (i < argc)
 	{
 		j = 0;
 		if (argv[i][j] == '+')
 			j++;
+		res = 0;
 		while (argv[i][j])
 		{
 			res = res * 10 + (argv[i][j] - '0');
