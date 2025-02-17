@@ -6,7 +6,7 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:43:46 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/17 12:44:31 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/17 15:16:24 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static bool	check_num(int argc, char **argv)
 	while (i < argc)
 	{
 		j = 0;
-		if (ft_atol(argv[i]) == 0)
+		if (ft_atoll(argv[i]) == 0)
 			return (false);
 		while (argv[i][j])
 		{
@@ -84,7 +84,7 @@ bool    parse_data(int argc, char **argv)
 		write(2, "Parameters should not exceed INT_MAX\n", 38);
 		return (false);
 	}
-	else if (ft_atol(argv[1]) > 200)
+	else if (ft_atoll(argv[1]) > 200)
 	{
 		write(2, "number_of_philosophers maximum value is 200\n", 45);
 		return (false);

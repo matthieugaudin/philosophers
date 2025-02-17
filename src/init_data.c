@@ -6,17 +6,17 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:38:43 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/17 12:35:34 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/17 15:16:09 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-long	ft_atol(const char *nptr)
+long long	ft_atoll(const char *nptr)
 {
-	size_t	i;
-	long	res;
-	int		sign;
+	long long	i;
+	long long	res;
+	int			sign;
 
 	i = 0;
 	sign = 1;
@@ -42,13 +42,13 @@ static void	init_env(t_env **env, char **argv, int argc)
 	int	i;
 
 	*env = malloc(sizeof(t_env));
-	(*env)->nb_philo = ft_atol(argv[1]);
-	(*env)->die_time = ft_atol(argv[2]);
-	(*env)->eat_time = ft_atol(argv[3]);
-	(*env)->sleep_time = ft_atol(argv[4]);
+	(*env)->nb_philo = ft_atoll(argv[1]);
+	(*env)->die_time = ft_atoll(argv[2]);
+	(*env)->eat_time = ft_atoll(argv[3]);
+	(*env)->sleep_time = ft_atoll(argv[4]);
 	(*env)->start_time = current_time();
 	if (argc == 6)
-		(*env)->nb_meals = ft_atol(argv[5]);
+		(*env)->nb_meals = ft_atoll(argv[5]);
 	else
 		(*env)->nb_meals = -1;
 	(*env)->is_over = false;
@@ -92,10 +92,10 @@ void	init_data(t_env **env, char **argv, int argc)
 {
 	init_env(env, argv, argc);
 	init_philos(*env);
-	// printf("nb_philos : %ld\n", (*env)->nb_philo);
-	// printf("die_time : %lld\n", (*env)->die_time);
-	// printf("eat_time : %lld\n", (*env)->eat_time);
-	// printf("sleep_time : %lld\n", (*env)->sleep_time);
-	// printf("start_time : %lld\n", (*env)->start_time);
-	// printf("nb_meals : %ld\n", (*env)->nb_meals);
+	printf("nb_philos : %ld\n", (*env)->nb_philo);
+	printf("die_time : %lld\n", (*env)->die_time);
+	printf("eat_time : %lld\n", (*env)->eat_time);
+	printf("sleep_time : %lld\n", (*env)->sleep_time);
+	printf("start_time : %lld\n", (*env)->start_time);
+	printf("nb_meals : %ld\n", (*env)->nb_meals);
 }

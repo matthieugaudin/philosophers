@@ -6,7 +6,7 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:48:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/17 12:36:24 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/17 15:14:38 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ long	    get_meals_eaten(t_philo *philo);
 void	    print_state(t_philo *philo, int state);
 void        *check_meals(void *arg);
 void	    free_data(t_env *env);
-long	    ft_atol(const char *nptr);
+long long	ft_atoll(const char *nptr);
 
 #endif /* PHILO_H */
