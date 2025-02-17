@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:51:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/16 20:12:03 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/17 11:02:39 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)
-		usleep(5000);
+		usleep(500);
 	if (philo->env->nb_philo == 1)
 	{
 		handle_one(philo);
