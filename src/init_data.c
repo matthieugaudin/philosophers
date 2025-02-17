@@ -6,7 +6,7 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:38:43 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/17 15:16:09 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/17 15:24:49 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,4 @@ void	init_data(t_env **env, char **argv, int argc)
 {
 	init_env(env, argv, argc);
 	init_philos(*env);
-	printf("nb_philos : %ld\n", (*env)->nb_philo);
-	printf("die_time : %lld\n", (*env)->die_time);
-	printf("eat_time : %lld\n", (*env)->eat_time);
-	printf("sleep_time : %lld\n", (*env)->sleep_time);
-	printf("start_time : %lld\n", (*env)->start_time);
-	printf("nb_meals : %ld\n", (*env)->nb_meals);
 }

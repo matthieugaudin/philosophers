@@ -6,7 +6,7 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:29:20 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/17 09:22:58 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/17 15:45:01 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static bool	is_philo_dead(t_philo *philo)
 	last_meal = get_last_meal(philo);
 	elapsed = elapsed_time(philo);
 	die_time = philo->env->die_time;
-	if (elapsed - last_meal > die_time && last_meal != 0)
+	if (elapsed - last_meal > die_time)
 		return (true);
 	else
 		return (false);
