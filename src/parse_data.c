@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parse_data.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:43:46 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/06 17:20:15 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/17 11:31:31 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@ static void	show_helper(bool *is_error)
 {
 	if (*is_error == false)
 	{
-		printf("Program should be launched as follow : \n\n");
-		printf("./philo ");
-		printf("number_of_philosophers time_to_die time_to_eat ");
-		printf("time_to_sleep [number_of_times_each_philosopher_must_eat]");
+		write(2, "Program should be launched as follow : \n\n", 42);
+    	write(2, "./philo number_of_philosophers time_to_die time_to_eat ", 55);
+    	write(2, "time_to_sleep [number_of_times_each_philosopher_must_eat]\n", 59);
 		*is_error = true;
 	}
 }
@@ -38,7 +37,7 @@ static bool	valid_value(char *str)
 	return (true);
 }
 
-bool    parser(int argc, char **argv)
+bool    parse_data(int argc, char **argv)
 {
 	bool	is_error;
 

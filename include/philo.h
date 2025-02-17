@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:48:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/16 19:42:16 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/17 11:31:22 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_env
 }   t_env;
 
 
-bool        parser(int argc, char **argv);
+bool        parse_data(int argc, char **argv);
 void	    init_data(t_env **env, char **argv, int argc);
 void	    launch_philo(t_philo *philos);
 void	    *routine(void *arg);
