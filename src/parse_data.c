@@ -6,7 +6,7 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 11:43:46 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/17 15:21:36 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:29:02 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	show_helper(void)
 {
-		write(2, "Program should be launched as follow : \n\n", 42);
-    	write(2, "./philo number_of_philosophers time_to_die time_to_eat ", 55);
-    	write(2, "time_to_sleep [number_of_times_each_philosopher_must_eat]\n", 59);
+	write(2, "Program should be launched as follow : \n\n", 42);
+	write(2, "./philo number_of_philosophers time_to_die time_to_eat ", 55);
+	write(2, "time_to_sleep [number_of_meal_per_philosopher]\n", 59);
 }
 
 static bool	check_num(int argc, char **argv)
@@ -67,7 +67,7 @@ static bool	check_overflow(int argc, char **argv)
 	return (true);
 }
 
-bool    parse_data(int argc, char **argv)
+bool	parse_data(int argc, char **argv)
 {
 	if (argc != 5 && argc != 6)
 	{

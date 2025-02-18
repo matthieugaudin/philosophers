@@ -6,27 +6,11 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 19:51:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/17 15:48:24 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:38:34 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
-
-void	print_state(t_philo *philo, int state)
-{
-	pthread_mutex_lock(&philo->env->print_mtx);
-	if (state == EAT && !get_is_finish(philo->env))
-		printf("%lld %ld is eating\n", elapsed_time(philo), philo->id);
-	else if (state == SLEEP && !get_is_finish(philo->env))
-		printf("%lld %ld is sleeping\n", elapsed_time(philo), philo->id);
-	else if (state == THINK && !get_is_finish(philo->env))
-		printf("%lld %ld is thinking\n", elapsed_time(philo), philo->id);
-	else if (state == FORK && !get_is_finish(philo->env))
-		printf("%lld %ld has taken a fork\n", elapsed_time(philo), philo->id);
-	else if (state == DIE && !get_is_finish(philo->env))
-		printf("%lld %ld died\n", elapsed_time(philo), philo->id);
-	pthread_mutex_unlock(&philo->env->print_mtx);
-}
 
 static void	is_eating(t_philo *philo)
 {
@@ -81,7 +65,7 @@ static void	handle_one(t_philo *philo)
 
 void	*routine(void *arg)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 == 0)

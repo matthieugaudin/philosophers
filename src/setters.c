@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   setters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:41:37 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/14 18:00:35 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:35:32 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void    set_is_over(t_env *env, bool is_over)
+void	set_is_over(t_env *env, bool is_over)
 {
 	pthread_mutex_lock(&env->is_over_mtx);
 	env->is_over = is_over;

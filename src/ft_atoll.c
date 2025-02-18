@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_data.c                                        :+:      :+:    :+:   */
+/*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 19:38:30 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/18 10:13:42 by mgaudin          ###   ########.fr       */
+/*   Created: 2025/02/18 15:24:22 by mgaudin           #+#    #+#             */
+/*   Updated: 2025/02/18 15:24:49 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	free_data(t_env *env)
+long long	ft_atoll(const char *nptr)
 {
-	int	i;
+	long long	i;
+	long long	res;
+	int			sign;
 
 	i = 0;
-	while (i < env->nb_philo)
+	sign = 1;
+	res = 0;
+	while (nptr[i] == 32 || (9 <= nptr[i] && nptr[i] <= 13))
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		pthread_mutex_destroy(&env->forks[i]);
+		if (nptr[i] == '-')
+			sign *= -1;
 		i++;
 	}
-	pthread_mutex_destroy(&env->print_mtx);
-	pthread_mutex_destroy(&env->is_over_mtx);
-	pthread_mutex_destroy(&env->last_meal_mtx);
-	pthread_mutex_destroy(&env->meals_eaten_mtx);
-	free(env->forks);
-	if (env->philos)
-		free(env->philos);
-	free(env);
+	while ('0' <= nptr[i] && nptr[i] <= '9')
+	{
+		res = res * 10 + (nptr[i] - '0');
+		i++;
+	}
+	return (res * sign);
 }
