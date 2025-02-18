@@ -6,7 +6,7 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:38:43 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/17 15:24:49 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/18 10:14:11 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,66 @@ long long	ft_atoll(const char *nptr)
 	return (res * sign);
 }
 
-static void	init_env(t_env **env, char **argv, int argc)
+static void	free_mutexes(t_env *env, int i, int status)
+{
+	while (--i >= 0)
+		pthread_mutex_destroy(&env->forks[i]);
+	if (status >= 1)
+		pthread_mutex_destroy(&env->print_mtx);
+	if (status >= 2)
+		pthread_mutex_destroy(&env->is_over_mtx);
+	if (status >= 3)
+		pthread_mutex_destroy(&env->meals_eaten_mtx)
+}
+
+static bool	init_env_mutex_suit(t_env *env, int i)
+{
+	if (pthread_mutex_init(&env->print_mtx, NULL) != 0)
+	{
+		free_mutexes(env, i, 0);
+		return (false);
+	}
+	pthread_mutex_init(&env->is_over_mtx, NULL);
+	{
+			free_mutexes(env, i, 1);
+			return (false);
+	}
+	pthread_mutex_init(&env->last_meal_mtx, NULL);
+	{
+			free_mutexes(env, i, 2);
+			return (false);
+	}
+	pthread_mutex_init(&env->meals_eaten_mtx, NULL);
+	{
+			free_mutexes(env, i, 3);
+			return (false);
+	}
+	return (true);
+}
+
+static bool	init_env_mutex(t_env *env)
 {
 	int	i;
 
+	i = 0;
+	while (i < env->nb_philo)
+	{
+		if (pthread_mutex_init(&env->forks[i], NULL) != 0)
+		{
+			free_mutexes(env, i, 0);
+			return (false);
+		}
+		i++;
+	}
+	if (!init_env_mutex_suit(env, i))
+		return (false);
+}
+
+static bool	init_env(t_env **env, char **argv, int argc)
+{
 	*env = malloc(sizeof(t_env));
+	if (!*env)
+		return (false);
 	(*env)->nb_philo = ft_atoll(argv[1]);
 	(*env)->die_time = ft_atoll(argv[2]);
 	(*env)->eat_time = ft_atoll(argv[3]);
@@ -53,24 +108,30 @@ static void	init_env(t_env **env, char **argv, int argc)
 		(*env)->nb_meals = -1;
 	(*env)->is_over = false;
 	(*env)->forks = malloc(sizeof(pthread_mutex_t) * (*env)->nb_philo);
-	i = 0;
-	while (i < (*env)->nb_philo)
 	{
-		pthread_mutex_init(&(*env)->forks[i], NULL);
-		i++;
+		free(*env);
+		return (false);
 	}
-	pthread_mutex_init(&(*env)->print_mtx, NULL);
-	pthread_mutex_init(&(*env)->is_over_mtx, NULL);
-	pthread_mutex_init(&(*env)->last_meal_mtx, NULL);
-	pthread_mutex_init(&(*env)->meals_eaten_mtx, NULL);
+	if (!init_env_mutex(*env))
+	{
+		free((*env)->forks);
+		free(*env);
+		return (false);
+	}
+	return (true);
 }
 
-static void	init_philos(t_env *env)
+static bool	init_philos(t_env *env)
 {
 	t_philo	*philo;
 	int		i;
 
 	env->philos = malloc(sizeof(t_philo) * env->nb_philo);
+	if (!env->philos)
+	{
+		free_data(env);
+		return (false);
+	}
 	philo = env->philos;
 	i = 0;
 	while (i < env->nb_philo)
@@ -86,10 +147,14 @@ static void	init_philos(t_env *env)
 		philo[i].env = env;
 		i++;
 	}
+	return (true);
 }
 
-void	init_data(t_env **env, char **argv, int argc)
+bool	init_data(t_env **env, char **argv, int argc)
 {
-	init_env(env, argv, argc);
-	init_philos(*env);
+	if (!init_env(env, argv, argc))
+		return (false);
+	if (!init_philos(*env))
+		return (false);
+	return (true);
 }
