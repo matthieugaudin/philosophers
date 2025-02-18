@@ -6,7 +6,7 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:38:43 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/18 10:29:28 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/18 11:14:20 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	free_mutexes(t_env *env, int i, int status)
 	if (status >= 2)
 		pthread_mutex_destroy(&env->is_over_mtx);
 	if (status >= 3)
-		pthread_mutex_destroy(&env->meals_eaten_mtx)
+		pthread_mutex_destroy(&env->meals_eaten_mtx);
 }
 
 static bool	init_env_mutex_suit(t_env *env, int i)
@@ -84,12 +84,17 @@ static bool	init_env_mutex(t_env *env)
 		if (pthread_mutex_init(&env->forks[i], NULL))
 		{
 			free_mutexes(env, i, 0);
+			free(env->forks);
 			return (false);
 		}
 		i++;
 	}
 	if (!init_env_mutex_suit(env, i))
+	{
+		free(env->forks);
 		return (false);
+	}
+	return (true);
 }
 
 static bool	init_env(t_env **env, char **argv, int argc)
@@ -108,13 +113,13 @@ static bool	init_env(t_env **env, char **argv, int argc)
 		(*env)->nb_meals = -1;
 	(*env)->is_over = false;
 	(*env)->forks = malloc(sizeof(pthread_mutex_t) * (*env)->nb_philo);
+	if (!(*env)->forks)
 	{
 		free(*env);
 		return (false);
 	}
 	if (!init_env_mutex(*env))
 	{
-		free((*env)->forks);
 		free(*env);
 		return (false);
 	}
