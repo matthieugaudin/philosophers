@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgaudin <mgaudin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 19:38:30 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/16 19:45:41 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/18 09:40:08 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ void	free_data(t_env *env)
 		pthread_mutex_destroy(&env->forks[i]);
 		i++;
 	}
+	pthread_mutex_destroy(&env->print_mtx);
+	pthread_mutex_destroy(&env->is_over_mtx);
+	pthread_mutex_destroy(&env->last_meal_mtx);
+	pthread_mutex_destroy(&env->meals_eaten_mtx);
 	free(env->forks);
 	free(env->philos);
 	free(env);
