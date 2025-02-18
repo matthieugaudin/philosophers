@@ -6,7 +6,7 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:48:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/18 15:45:42 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:48:16 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ typedef struct s_env
 /*==============MAIN==============*/
 bool		launch_philo(t_philo *philos);
 void		*routine(void *arg);
-void		monitor(t_philo *philo);
 void		*check_meals(void *arg);
 
 /*==============PARSER==============*/
