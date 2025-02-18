@@ -6,7 +6,7 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:38:43 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/18 10:14:11 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/18 10:29:28 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,22 @@ static void	free_mutexes(t_env *env, int i, int status)
 
 static bool	init_env_mutex_suit(t_env *env, int i)
 {
-	if (pthread_mutex_init(&env->print_mtx, NULL) != 0)
+	if (pthread_mutex_init(&env->print_mtx, NULL))
 	{
 		free_mutexes(env, i, 0);
 		return (false);
 	}
-	pthread_mutex_init(&env->is_over_mtx, NULL);
+	if (pthread_mutex_init(&env->is_over_mtx, NULL))
 	{
 			free_mutexes(env, i, 1);
 			return (false);
 	}
-	pthread_mutex_init(&env->last_meal_mtx, NULL);
+	if (pthread_mutex_init(&env->last_meal_mtx, NULL))
 	{
 			free_mutexes(env, i, 2);
 			return (false);
 	}
-	pthread_mutex_init(&env->meals_eaten_mtx, NULL);
+	if (pthread_mutex_init(&env->meals_eaten_mtx, NULL))
 	{
 			free_mutexes(env, i, 3);
 			return (false);
@@ -81,7 +81,7 @@ static bool	init_env_mutex(t_env *env)
 	i = 0;
 	while (i < env->nb_philo)
 	{
-		if (pthread_mutex_init(&env->forks[i], NULL) != 0)
+		if (pthread_mutex_init(&env->forks[i], NULL))
 		{
 			free_mutexes(env, i, 0);
 			return (false);

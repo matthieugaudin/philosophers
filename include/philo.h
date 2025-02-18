@@ -6,7 +6,7 @@
 /*   By: mgaudin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 08:48:59 by mgaudin           #+#    #+#             */
-/*   Updated: 2025/02/18 10:11:27 by mgaudin          ###   ########.fr       */
+/*   Updated: 2025/02/18 10:26:57 by mgaudin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_env
 
 bool        parse_data(int argc, char **argv);
 bool	    init_data(t_env **env, char **argv, int argc);
-void	    launch_philo(t_philo *philos);
+bool	    launch_philo(t_philo *philos);
 void	    *routine(void *arg);
 long long	current_time(void);
 long long	elapsed_time(t_philo *philo);
