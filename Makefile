@@ -1,5 +1,5 @@
 NAME = philo
-CC = cc -g
+CC = cc
 CCFLAGS = -Wall -Wextra -Werror
 
 SRC =	src/main.c src/parse_data.c src/launch_philo.c src/init_data.c src/time.c \
